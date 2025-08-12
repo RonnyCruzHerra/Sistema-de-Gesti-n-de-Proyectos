@@ -18,7 +18,7 @@ public class PmsJavaSwing {
         String user = "pms_user";
         String password = "admin";
         try (Connection conn = DriverManager.getConnection(url, user, password)) {
-            System.out.println("✅ Conexión exitosa a PostgreSQL");
+            System.out.println("Conexion exitosa a PostgreSQL");
         } catch (Exception e) {
             e.printStackTrace();
         }
