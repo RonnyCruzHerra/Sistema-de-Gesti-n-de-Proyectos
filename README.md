@@ -92,3 +92,70 @@ CREATE TABLE log_errores (
     fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     stacktrace TEXT
 );
+
+
+# Sistema de Gestión de Proyectos (PMS) - Día 3
+
+## Resumen del Día 3
+
+Durante este día, se implementaron los Data Access Objects (DAOs) para todas las entidades del sistema, asegurando una comunicación segura y eficiente con la base de datos PostgreSQL. Además, se configuró un pool de conexiones con HikariCP para optimizar el manejo de conexiones y evitar fugas o bloqueos.
+
+---
+
+## Qué se hizo
+
+### 1. Implementación de DAOs
+
+Se crearon las clases DAO para las siguientes entidades, ubicadas en el paquete `com.mycompany.pms.java.swing.dao`:
+
+- `UsuarioDAO.java`
+- `ProyectoDAO.java`
+- `TareaDAO.java`
+- `RecursoDAO.java`
+- `LogErrorDAO.java`
+
+Cada DAO incluye métodos CRUD (Crear, Leer, Actualizar, Eliminar) usando **PreparedStatements** para proteger contra SQL Injection.
+
+En el caso de `UsuarioDAO`, se implementó el hash de contraseñas usando **BCrypt**, asegurando que las contraseñas no se almacenen en texto plano.
+
+### 2. Configuración de conexión segura con HikariCP
+
+Se implementó la clase `DBConnection` en el paquete `com.mycompany.pms.java.swing.util`, que:
+
+- Lee parámetros de conexión desde un archivo `db.properties` en la carpeta `resources/`.
+- Permite sobrescribir configuración con variables de entorno para facilitar despliegue en producción.
+- Usa un pool de conexiones para optimizar el acceso concurrente a la base de datos.
+- Provee métodos para obtener conexiones y cerrar el pool.
+
+### 3. Adaptación de DAOs para usar la conexión centralizada
+
+Todos los DAOs fueron modificados para obtener conexiones a través de `DBConnection.getConnection()`, unificando la configuración y mejorando la mantenibilidad.
+
+---
+
+## Archivos clave creados/modificados
+
+- `src/dao/UsuarioDAO.java`  
+- `src/dao/ProyectoDAO.java`  
+- `src/dao/TareaDAO.java`  
+- `src/dao/RecursoDAO.java`  
+- `src/dao/LogErrorDAO.java`  
+- `src/util/DBConnection.java`  
+- `resources/db.properties`
+
+---
+
+## Cómo probar la conexión
+
+En la clase principal `PmsJavaSwing.java` se incluyó un simple test para verificar la conexión a la base de datos:
+
+```java
+public class PmsJavaSwing {
+    public static void main(String[] args) {
+        try (Connection conn = DBConnection.getConnection()) {
+            System.out.println("Conexion exitosa a PostgreSQL");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
