@@ -159,3 +159,62 @@ public class PmsJavaSwing {
         }
     }
 }
+
+
+# Avances del Día 4
+
+Durante el Día 4, el proyecto se enfocó en fortalecer la lógica de negocio mediante la implementación de los servicios (Service) para las entidades principales:
+
+UsuarioService
+
+ProyectoService
+
+TareaService
+
+RecursoService
+
+Objetivos alcanzados
+
+Validaciones básicas de negocio:
+
+Campos obligatorios (nombre, email, password).
+
+Fechas coherentes para proyectos y tareas.
+
+Unicidad de usuarios por email.
+
+Seguridad:
+
+Hashing de contraseñas usando BCrypt.
+
+Uso de PreparedStatement para evitar SQL Injection.
+
+Gestión de errores:
+
+Excepciones capturadas y registradas en la tabla log_errores mediante LogErrorDAO.
+
+Conexión estable con PostgreSQL:
+
+Pool de conexiones gestionado por HikariCP.
+
+Archivo de configuración db.properties para parámetros de conexión.
+
+## Entregables del Día 4
+
+Clases de servicio funcionales:
+
+UsuarioService.java
+
+ProyectoService.java
+
+TareaService.java
+
+RecursoService.java
+
+Registro de errores automatizado con LogErrorDAO.
+
+Base de datos gestion_proyectos con tablas creadas (usuario, proyecto, tarea, recurso, log_errores).
+
+Conexión y pool de conexiones configurados y funcionando.
+
+Validaciones básicas implementadas.
