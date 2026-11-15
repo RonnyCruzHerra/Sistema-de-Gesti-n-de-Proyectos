@@ -224,3 +224,24 @@ Base de datos gestion_proyectos con tablas creadas (usuario, proyecto, tarea, re
 Conexión y pool de conexiones configurados y funcionando.
 
 Validaciones básicas implementadas.
+
+<!-- build-repairs-20261115:start -->
+## Reparación y comprobación — 2026-11-15
+
+- Se documentaron los comandos de compilación y comprobación con Maven/JDK 24 y se conservaron los cambios previos de README y exclusiones.
+
+Comprobado:
+
+- Maven package terminó correctamente para `pms-java-swing/pom.xml`.
+
+Comandos:
+
+```powershell
+mvn -f "pms-java-swing/pom.xml" package
+```
+
+Alcance pendiente:
+
+- Compilar y ejecutar la suite disponible no demuestra todos los flujos gráficos, de datos o de instalación.
+
+<!-- build-repairs-20261115:end -->
